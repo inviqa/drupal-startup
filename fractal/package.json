@@ -1,0 +1,17 @@
+{
+  "name": "fractal-startup",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "fractal:start": "fractal start --sync --port 3000",
+    "fractal:build": "fractal build"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@frctl/fractal": "^1.1.7",
+    "highlight.js": "9.15.2"
+  }
+}

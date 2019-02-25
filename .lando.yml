@@ -16,7 +16,7 @@ services:
 
   appserver:
     build:
-      - cd $LANDO_MOUNT && composer install
+#      - cd $LANDO_MOUNT && composer install
 
 #  Optional - for Acquia hosting.
 #  cache:
@@ -49,12 +49,27 @@ services:
     hogfrom:
       - appserver
 
+  node:
+    type: node
+    globals:
+      gulp: latest
+      gulp-cli: latest
+    build:
+#      - npm i -g highlight.js@9.15.2 --save
+#      - npm i -g @frctl/fractal
+#      - cd /app/fractal && yarn install
+    overrides:
+      services:
+        ports: [3000:3000]
+
 # Additional mailhog proxy settings so we get a nice URL for the mailhog ui
 proxy:
   mailhog:
     - mail.startup.lndo.site
   nginx:
     - www.startup.lndo.site
+  node:
+    - fractal-startup.lndo.site
 
 # Development tools
 tooling:
@@ -95,3 +110,10 @@ tooling:
     description: Run all tests
     service: appserver
     cmd: ./scripts/development/tests.sh
+
+  yarn:
+    service: node
+    cmd:
+      - yarn
+      - --cwd
+      - /app/fractal

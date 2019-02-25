@@ -1,0 +1,10 @@
+name: STARTUP THEME
+description: Please change me
+core: 8.x
+type: theme
+
+libraries:
+  - startup_theme/global
+
+regions:
+  content: Content

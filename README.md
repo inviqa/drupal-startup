@@ -82,5 +82,6 @@ Run `lando start` from within the project directory.
 |`lando phpunit`                                |Run phpunit tests _see ./phpunit.xml.dist for scope_     |
 |`lando behat`                                  |Run behat test suite                                     |
 |`lando test`                                   |Run all tests and code evaluation                        |
+|`lando yarn`                                   |Run yarn commands                                        |
 
 For further lando related commands see: https://docs.devwithlando.io/config/tooling.html
