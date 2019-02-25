@@ -10,6 +10,8 @@ config:
   database: mariadb:10.1
   xdebug: true
 
+env_file:
+  - .env
 # Service overrides and augments
 # See: https://docs.devwithlando.io/config/services.html
 services:
@@ -58,6 +60,11 @@ proxy:
 
 # Development tools
 tooling:
+  robo:
+    service: appserver
+    description: Task runner
+    cmd: ./bin/robo
+
   install:
     descripion: Install/Re-install Site
     service: appserver
