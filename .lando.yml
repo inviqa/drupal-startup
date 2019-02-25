@@ -18,6 +18,7 @@ services:
 
   appserver:
     build:
+      - composer global require consolidation/robo
       - cd $LANDO_MOUNT && composer install
 
 #  Optional - for Acquia hosting.
@@ -63,7 +64,7 @@ tooling:
   robo:
     service: appserver
     description: Task runner
-    cmd: ./bin/robo
+    cmd: robo
 
   install:
     descripion: Install/Re-install Site

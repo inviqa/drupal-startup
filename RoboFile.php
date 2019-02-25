@@ -8,8 +8,6 @@
  */
 class RoboFile extends \Robo\Tasks
 {
-  use \Boedah\Robo\Task\Drush\loadTasks;
-
   # Lando docroot
   const ENV_DOCROOT = "/app/docroot";
   # Drupal install profile
@@ -17,28 +15,33 @@ class RoboFile extends \Robo\Tasks
   // Drush executable
   const DRUSH_EXEC = "/app/bin/drush";
 
-
   function __construct() {
     // Treat this command like bash -e and exit as soon as there's a failure.
     $this->stopOnFail();
   }
 
-  protected function composerInstall() {
-    $this->_exec('`which composer` install');
+  protected function composerInstall($opts = ['no-dev' => FALSE]) {
+    $composer_task = $this->taskComposerInstall()->optimizeAutoloader();
+    if ($opts['no-dev']) {
+      $composer_task->noDev();
+    }
+
+    return $composer_task;
   }
 
   /**
    * Install the drupal site with default credentials.
-   * @param null $site_name
    */
-  public function install($site_name = NULL) {
+  public function install() {
+    $this->composerInstall()->run();
+
     // Copy local settings file.
     if (!file_exists(self::ENV_DOCROOT . '/sites/default/settings.local.php')) {
       $this->taskFilesystemStack()
         ->copy(
           self::ENV_DOCROOT . "/sites/default.settings.local.php",
           self::ENV_DOCROOT . "/sites/default/settings.local.php"
-          )
+        )
         ->run();
     }
 
@@ -46,9 +49,6 @@ class RoboFile extends \Robo\Tasks
     $this->drush()
       ->args(['site-install', 'startup', 'install_configure_form.enable_update_status_module=0'])
       ->option('verbose')
-//      ->option('site-name', $site_name)
-//      ->option('site-email', 'admin@example.com')
-//      ->option('account-mail', 'admin@example.com')
       ->option('account-name', 'admin')
       ->option('account-pass', 'admin')
       ->run();
@@ -57,24 +57,27 @@ class RoboFile extends \Robo\Tasks
   /**
    * Reset the files managed by composer.
    * @param array $opts
+   * @return \Robo\Collection\Collection
    */
   public function reset($opts = ['delete-lock|l' => FALSE]) {
+    $collection = $this->collectionBuilder();
+
     // Remove composer managed drupal directories
-    $this->taskDeleteDir(self::ENV_DOCROOT . '/core')->run();
-    $this->taskDeleteDir(self::ENV_DOCROOT . '/libraries')->run();
-    $this->taskDeleteDir(self::ENV_DOCROOT . '/modules/contrib')->run();
-    $this->taskDeleteDir(self::ENV_DOCROOT . '/themes/contrib')->run();
+    $collection
+      ->addTask($this->taskDeleteDir(self::ENV_DOCROOT . '/core'))
+      ->addTask($this->taskDeleteDir(self::ENV_DOCROOT . '/libraries'))
+      ->addTask($this->taskDeleteDir(self::ENV_DOCROOT . '/modules/contrib'))
+      ->addTask($this->taskDeleteDir(self::ENV_DOCROOT . '/themes/contrib'));
 
     // Optionally remove composer.lock
     if ($opts['delete-lock']) {
-      $this->taskFilesystemStack()
-        ->remove('/app/composer.lock')
-        ->run();
+      $collection->addTask($this->taskFilesystemStack()->remove('/app/composer.lock'));
     }
 
     // Remove the vendor directory.
-    // How will this affect Robo??
-    $this->taskDeleteDir('/app/vendor')->run();
+    $collection->addTask($this->taskDeleteDir('/app/vendor'));
+
+    return $collection;
   }
 
   /**
@@ -90,6 +93,7 @@ class RoboFile extends \Robo\Tasks
     $collection = $this->collectionBuilder();
 
     $collection
+      ->addTask($this->composerInstall())
       ->addTask($this->drush()->arg('cr'))
       ->addTask($this->drush()->arg('cim'))
       ->addTask($this->drush()->arg('updb'))
@@ -112,6 +116,11 @@ class RoboFile extends \Robo\Tasks
       ->option('yes'); // Assume yes
   }
 
+  /**
+   * $ robo run:tests
+   *
+   * Run all tests
+   */
   public function runTests() {
     $this->taskExecStack()
       ->exec('/app/bin/phpcs')
