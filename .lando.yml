@@ -55,12 +55,9 @@ services:
       gulp: latest
       gulp-cli: latest
     build:
-#      - npm i -g highlight.js@9.15.2 --save
-#      - npm i -g @frctl/fractal
-#      - cd /app/fractal && yarn install
-    overrides:
-      services:
-        ports: [3000:3000]
+      - npm i -g @frctl/fractal
+      - cd /app/fractal && yarn install
+    ports: [3000:3000]
 
 # Additional mailhog proxy settings so we get a nice URL for the mailhog ui
 proxy:
@@ -69,7 +66,7 @@ proxy:
   nginx:
     - www.startup.lndo.site
   node:
-    - fractal-startup.lndo.site
+    - fractal-startup.lndo.site:3000
 
 # Development tools
 tooling:
@@ -113,7 +110,4 @@ tooling:
 
   yarn:
     service: node
-    cmd:
-      - yarn
-      - --cwd
-      - /app/fractal
+    cmd: 'yarn --cwd /app/fractal'
