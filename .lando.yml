@@ -16,7 +16,7 @@ services:
 
   appserver:
     build:
-#      - cd $LANDO_MOUNT && composer install
+      - cd $LANDO_MOUNT && composer install
 
 #  Optional - for Acquia hosting.
 #  cache:
