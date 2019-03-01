@@ -2,9 +2,24 @@ name: STARTUP THEME
 description: Please change me
 core: 8.x
 type: theme
+base theme: stable
 
 libraries:
-  - startup_theme/global
+  - startup_theme/atoms
+  - startup_theme/molecules
+  - startup_theme/organisms
+  - startup_theme/templates
+  - startup_theme/pages
 
 regions:
-  content: Content
+  header: 'Header'
+  primary_menu: 'Primary menu'
+  secondary_menu: 'Secondary menu'
+  breadcrumb: 'Breadcrumb'
+  highlighted: 'Highlighted'
+  help: 'Help'
+  content: 'Content'
+  sidebar_first: 'Left sidebar'
+  sidebar_second: 'Right sidebar'
+  bottom: 'Bottom'
+  footer: 'Footer'
