@@ -12,14 +12,9 @@ Fixed environment URLS:
 | Staging      | https://stage.newproject.com       |
 | Dev          | https://dev.newproject.com         |
 
-### Actors
-
-Who are the key participants (past & present)...
-
-### Tech stack
-
-Brief overview of the tech stack...
-
-### Release procedure
-
-How does our code make it to production...
+## Index
+* [Actors](readme/actors.md)
+* [Tech stack](readme/hosting.md)
+* [Branching model](readme/branching.md)
+* [Release procedure](readme/deploy.md)
+* [Onboarding](onboarding)
