@@ -2,7 +2,7 @@
 
 /**
  * @file
- * Functions to support the Forcesnet retheme.
+ * Functions to support the theme.
  */
 
 // Recursively load all files under the hooks directory.

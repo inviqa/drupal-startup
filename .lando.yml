@@ -55,8 +55,7 @@ services:
       gulp: latest
       gulp-cli: latest
     build:
-      - npm i -g @frctl/fractal
-      - cd /app/fractal && yarn install
+      - cd /app/fractal && npm install
     ports: [3000:3000]
 
 # Additional mailhog proxy settings so we get a nice URL for the mailhog ui
@@ -108,6 +107,6 @@ tooling:
     service: appserver
     cmd: ./scripts/development/tests.sh
 
-  yarn:
+  npm:
     service: node
-    cmd: 'yarn --cwd /app/fractal'
+    cmd: npm --prefix=/app/fractal

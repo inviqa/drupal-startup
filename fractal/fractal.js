@@ -11,6 +11,13 @@ const path = require('path');
 const fractal = module.exports = require('@frctl/fractal').create();
 
 /*
+ * Require the Twig adapter
+ */
+const twigAdapter = require('@frctl/twig')();
+fractal.components.engine(twigAdapter);
+fractal.components.set('ext', '.twig');
+
+/*
  * Give your project a title.
  */
 fractal.set('project.title', 'Startup');
@@ -18,12 +25,12 @@ fractal.set('project.title', 'Startup');
 /*
  * Tell Fractal where to look for components.
  */
-fractal.components.set('path', path.join(__dirname, '../docroot/themes/custom/startup_theme/assets/src/components'));
+fractal.components.set('path', path.join(__dirname, '../docroot/themes/custom/startup_theme/components'));
 
 /*
  * Tell Fractal where to look for documentation pages.
  */
-fractal.docs.set('path', path.join(__dirname, '../docroot/themes/custom/startup_theme/assets/src/docs'));
+fractal.docs.set('path', path.join(__dirname, '../docroot/themes/custom/startup_theme/docs'));
 
 /*
  * Tell the Fractal web preview plugin where to look for static assets.

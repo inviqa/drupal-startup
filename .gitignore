@@ -1,6 +1,6 @@
 # --- REMOVE THIS BLOCK! --- #
 composer.lock
-yarn.lock
+package-lock.json
 # --- REMOVE THIS BLOCK! --- #
 
 
