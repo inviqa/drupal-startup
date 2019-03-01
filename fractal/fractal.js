@@ -23,6 +23,12 @@ fractal.components.set('ext', '.twig');
 fractal.set('project.title', 'Startup');
 
 /*
+ * Global preview layout.
+ * Required as our preview template lives in themename/components/_fractal/
+ */
+fractal.components.set('default.preview', '@preview');
+
+/*
  * Tell Fractal where to look for components.
  */
 fractal.components.set('path', path.join(__dirname, '../docroot/themes/custom/startup_theme/components'));
