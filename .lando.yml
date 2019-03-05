@@ -55,7 +55,7 @@ services:
       gulp: latest
       gulp-cli: latest
     build:
-      - cd /app/fractal && npm install
+      - cd /app/docroot/themes/custom/startup_theme && npm install
     ports: [3000:3000]
 
 # Additional mailhog proxy settings so we get a nice URL for the mailhog ui
@@ -109,4 +109,4 @@ tooling:
 
   npm:
     service: node
-    cmd: npm --prefix=/app/fractal
+    cmd: npm --prefix=/app/docroot/themes/custom/startup_theme

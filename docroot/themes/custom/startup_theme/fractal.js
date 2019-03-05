@@ -31,19 +31,19 @@ fractal.components.set('default.preview', '@preview');
 /*
  * Tell Fractal where to look for components.
  */
-fractal.components.set('path', path.join(__dirname, '../docroot/themes/custom/startup_theme/components'));
+fractal.components.set('path', path.join(__dirname, 'patterns/components'));
 
 /*
  * Tell Fractal where to look for documentation pages.
  */
-fractal.docs.set('path', path.join(__dirname, '../docroot/themes/custom/startup_theme/docs'));
+fractal.docs.set('path', path.join(__dirname, 'patterns/docs'));
 
 /*
  * Tell the Fractal web preview plugin where to look for static assets.
  */
-fractal.web.set('static.path', path.join(__dirname, '../docroot/themes/custom/startup_theme/assets/dist'));
+fractal.web.set('static.path', path.join(__dirname, 'assets/dist'));
 
 /*
  * Set the path for the styleguide
  */
-fractal.web.set('builder.dest', path.join(__dirname, '../docroot/themes/custom/startup_theme/styleguide'));
+fractal.web.set('builder.dest', path.join(__dirname, 'styleguide'));

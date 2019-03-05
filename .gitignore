@@ -17,7 +17,7 @@ docroot/themes/custom/*/styleguide
 docroot/themes/custom/*/assets/dist
 
 # Ignore node dependencies
-*/node_modules
+node_modules/
 
 # System
 .idea
