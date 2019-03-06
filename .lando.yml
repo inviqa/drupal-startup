@@ -54,8 +54,9 @@ services:
     globals:
       gulp: latest
       gulp-cli: latest
-    build:
-      - cd /app/docroot/themes/custom/startup_theme && npm install
+    # Replace this with your theme path after it's been generated.
+    # build:
+    #   - cd /app/docroot/themes/custom/startup_theme && npm install
     ports: [3000:3000]
 
 # Additional mailhog proxy settings so we get a nice URL for the mailhog ui
