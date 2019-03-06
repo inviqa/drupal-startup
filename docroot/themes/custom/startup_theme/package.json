@@ -1,12 +1,11 @@
 {
-  "name": "fractal-startup",
+  "name": "startup_theme",
   "version": "1.0.0",
-  "description": "",
+  "description": "Dependencies for the startup_theme theme",
   "private": true,
-  "main": "index.js",
   "scripts": {
-    "fractal:start": "fractal start --sync --port 3000",
-    "fractal:build": "fractal build"
+    "start:fractal": "fractal start --sync --port 3000",
+    "build:fractal": "fractal build"
   },
   "devDependencies": {
     "@frctl/fractal": "^1.1.7",
