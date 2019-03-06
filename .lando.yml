@@ -110,4 +110,4 @@ tooling:
 
   npm:
     service: node
-    cmd: npm --prefix=/app/docroot/themes/custom/startup_theme
+    cmd: npm
