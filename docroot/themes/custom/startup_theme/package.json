@@ -4,11 +4,15 @@
   "description": "Dependencies for the startup_theme theme",
   "private": true,
   "scripts": {
-    "start:fractal": "fractal start --sync --port 3000",
-    "build:fractal": "fractal build"
+    "hello": "echo 'Hello World'",
+    "forever": "forever start node_modules/.bin/gulp serve"
   },
   "devDependencies": {
     "@frctl/fractal": "^1.1.7",
-    "@frctl/twig": "^1.0.0-beta.5"
+    "@frctl/twig": "^1.0.0-beta.5",
+    "gulp": "^4.0.0"
+  },
+  "dependencies": {
+    "forever": "^0.15.3"
   }
 }

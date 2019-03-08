@@ -8,7 +8,7 @@ const path = require('path');
 /*
  * Require the Fractal module
  */
-const fractal = module.exports = require('@frctl/fractal').create();
+const fractal = require('@frctl/fractal').create();
 
 /*
  * Require the Twig adapter
@@ -47,3 +47,6 @@ fractal.web.set('static.path', path.join(__dirname, 'assets/dist'));
  * Set the path for the styleguide
  */
 fractal.web.set('builder.dest', path.join(__dirname, 'styleguide'));
+
+// Export config
+module.exports = fractal;
