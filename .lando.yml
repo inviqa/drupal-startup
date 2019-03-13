@@ -58,8 +58,7 @@ services:
     build:
       - cd /app/docroot/themes/custom/startup_theme && npm install
     run:
-      - cd /app/docroot/themes/custom/startup_theme && npm run hello
-      - cd /app/docroot/themes/custom/startup_theme && npm run forever
+      - cd /app/docroot/themes/custom/startup_theme && npm run start:fractal
     ports: [3000:3000]
 
 # Additional mailhog proxy settings so we get a nice URL for the mailhog ui

@@ -4,8 +4,9 @@
   "description": "Dependencies for the startup_theme theme",
   "private": true,
   "scripts": {
-    "hello": "echo 'Hello World'",
-    "forever": "forever start node_modules/.bin/gulp serve"
+    "build:fractal": "node_modules/.bin/gulp build:fractal",
+    "start:fractal": "forever start --minUptime 1000 --spinSleepTime 1000 node_modules/.bin/gulp start:fractal",
+    "stop:fractal": "forever stopall"
   },
   "devDependencies": {
     "@frctl/fractal": "^1.1.7",
