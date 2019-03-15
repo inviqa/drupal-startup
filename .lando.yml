@@ -49,15 +49,14 @@ services:
     hogfrom:
       - appserver
 
-  node:
-    type: node
-    globals:
-      gulp: latest
-      gulp-cli: latest
-    # Replace this with your theme path after it's been generated.
-    # build:
-    #   - cd /app/docroot/themes/custom/startup_theme && npm install
-    ports: [3000:3000]
+  # Add a Node.js container for front end tooling and Fractal.
+  # Note: You may also want to uncomment the fractal proxy.
+  # node:
+  #   type: node
+  #   # Replace this with your theme path after it's been generated.
+  #   # build:
+  #   #   - cd /app/docroot/themes/custom/startup_theme && npm install
+  #   ports: [3000:3000]
 
 # Additional mailhog proxy settings so we get a nice URL for the mailhog ui
 proxy:
@@ -65,8 +64,8 @@ proxy:
     - mail.startup.lndo.site
   nginx:
     - www.startup.lndo.site
-  node:
-    - fractal.lndo.site:3000
+  # node:
+  #   - fractal.lndo.site:3000
 
 # Development tools
 tooling:
